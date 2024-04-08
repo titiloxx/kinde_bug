@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kinde create organization bug demonstration
 
-## Getting Started
+## Overview
+This repository is dedicated to showcasing a specific bug encountered with the Kinde library during the user login and organization creation process.
 
-First, run the development server:
+## Bug Description
+Upon creating a new user, the application correctly navigates to a window where the user can input the name of their organization. The bug manifests after the user submits the name of the organization. Despite the backend successfully associating the newly created organization with the user, the front-end interface does not reflect this change. It continues to display the organization creation screen as if the user has not yet created an organization. This behavior leads to multiple organization creation and disrupts the user experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Steps to Reproduce
+1. ``npm run i``
+2. ``npm run dev``
+3. Sign up 
+4. Complete the input with the name of desired organization
+4. Submit the form
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Expected Behavior
+After submitting the organization name, the application should:
+- Successfully associate the new organization with the user in the backend.
+- Navigate away from the organization creation screen
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Actual Behavior
+After the organization name is submitted:
+- The new organization is successfully created and associated with the user in the backend (confirmed via kinde console inspection).
+- The application interface fails to update, remaining on the organization creation screen and prompting the user to input an organization name as if it hadn't been done.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Additional Information
+- Another solution would be to use the kinde option to create te organization and user at the same time, but this has negative implications:
+-- This has another bug showed in this video: https://www.loom.com/share/55a5bcfad7dc4a028046539779e675fc?utm_medium=gif
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
